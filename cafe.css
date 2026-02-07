@@ -1,0 +1,178 @@
+/* ===== ESTILOS GENERALES ===== */
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("./cafe1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ===== HEADER ===== */
+header{
+    background:#ba8858;
+    padding:15px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:20px;
+    color:#3b2414;
+}
+
+header p{
+    margin:5px 0 0;
+    font-size:14px;
+    color:#3b2414;
+}
+
+.back{
+    display:block;
+    margin-top:6px;
+    color:#3b2414;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ===== GRID ===== */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:12px;
+    padding:15px;
+    margin-bottom:90px;
+}
+
+/* ===== CARDS ===== */
+.card{
+    background: rgba(255, 255, 255, 0.92);
+    border-radius:14px;
+    padding:10px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,0.35);
+    transition:transform 0.2s;
+}
+
+.card img{
+    width:80%;
+    height:150px;
+    object-fit:cover;
+    border-radius:14px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img{
+    transform: scale(1.05);
+}
+
+.card h3{
+    font-size:14px;
+    margin:8px 0 0;
+    color:#3b2414;
+}
+
+.card p{
+    margin:6px 0;
+    font-weight:bold;
+}
+
+.card button{
+    background:#895523;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* ===== BOTÓN VER PEDIDO (PÁGINAS SECUNDARIAS) ===== */
+.footer-btn{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#ba8858;
+    color:#3b2414;
+    text-align:center;
+    border-radius: 40px;
+    padding:14px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:16px;
+}
+
+/* ===== BARRA PEDIDO (PÁGINA PRINCIPAL) ===== */
+.pedido-fijo{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#ba8858;
+    padding:12px;
+    text-align:center;
+}
+
+.pedido-fijo button{
+    width:90%;
+    padding:14px;
+    font-size:16px;
+    background:#895523;
+    color:white;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+}
+
+/* ===== MEDIA QUERIES – TELÉFONOS ===== */
+
+/* Teléfonos pequeños */
+@media (max-width: 480px){
+
+    header h1{
+        font-size:17px;
+    }
+
+    header p{
+        font-size:13px;
+    }
+
+    .grid{
+        grid-template-columns: 1fr;
+        gap:16px;
+        padding:12px;
+    }
+
+    .card img{
+        height:180px;
+    }
+
+    .footer-btn{
+        font-size:15px;
+        padding:16px;
+    }
+
+    .pedido-fijo button{
+        width:95%;
+        font-size:16px;
+    }
+}
+
+/* Teléfonos grandes */
+@media (min-width: 481px) and (max-width: 600px){
+
+    .grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap:14px;
+    }
+
+    .card img{
+        height:170px;
+    }
+}
+
+
+

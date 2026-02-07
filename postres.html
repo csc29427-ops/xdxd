@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Postres</title>
+<link rel="stylesheet" href="./cafe.css">
+</head>
+<body>
+
+<header>
+    <h1>🍰 Postres</h1>
+    <a class="back" href="./index.html">← Volver</a>
+</header>
+
+<div class="grid">
+
+<div class="card">
+    <img src="./flan.jpg">
+    <h3>Flan</h3>
+    <p>$25</p>
+    <button onclick="agregar('Flan', 25)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./gelatinayog.jpg">
+    <h3>Gelatina con yogurt</h3>
+    <p>$20</p>
+    <button onclick="agregar('Gelatina con yogurt', 20)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./chocoflan.jpg">
+    <h3>Chocoflan</h3>
+    <p>$30</p>
+    <button onclick="agregar('Chocoflan', 30)">Agregar</button>
+</div>
+</div>
+
+<div class="pedido-fijo">
+    <button onclick="location.href='./pedid.html'">
+        🧾 Ver Pedido
+    </button>
+</div>
+<script>
+    function agregar(nombre, precio){
+        let pedido = JSON.parse(localStorage.getItem("pedido")) || [];
+        pedido.push({nombre, precio});
+        localStorage.setItem("pedido", JSON.stringify(pedido));
+        alert("Producto agregado");
+    }
+    </script>
+    
+</body>
+</html>

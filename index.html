@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafetería UATV ☕</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @media (max-width: 480px){
+
+            header{
+                padding:12px;
+            }
+        
+            header h1{
+                font-size:17px;
+            }
+        
+            header p{
+                font-size:13px;
+            }
+        
+            .grid{
+                grid-template-columns: 1fr; /* una sola columna */
+                gap:16px;
+                padding:12px;
+            }
+        
+            .card{
+                padding:12px;
+            }
+        
+            .card img{
+                width:100%;
+                height:180px;
+            }
+        
+            .card h3{
+                font-size:15px;
+            }
+        
+            .pedido-fijo{
+                padding:10px;
+            }
+        
+            .pedido-fijo button{
+                width:95%;
+                font-size:16px;
+                padding:14px;
+                border-radius:16px;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 600px){
+
+            .grid{
+                grid-template-columns: repeat(2, 1fr);
+                gap:14px;
+            }
+        
+            .card img{
+                height:170px;
+            }
+        
+            .pedido-fijo button{
+                font-size:15px;
+            }
+        }
+        
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+        
+            background-image: url("./cafe1.jpg");
+            background-size: cover;        /* La imagen cubre toda la pantalla */
+            background-position: center;   /* Centrada */
+            background-repeat: no-repeat;  /* No se repite */
+            background-attachment: fixed;  /* Efecto elegante al hacer scroll */
+        }
+        
+        
+
+        header{
+            background:#ba8858;
+            padding:15px;
+            text-align:center;
+        }
+
+        header h1{
+            margin:0;
+            font-size:20px;
+        }
+
+        header p{
+            margin:5px 0 0;
+            font-size:14px;
+        }
+
+       
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:12px;
+            padding:15px;
+            margin-bottom:90px; /* espacio para botón fijo */
+        }
+
+        .card{
+            background: rgba(255, 255, 255, 0.92); /* blanco suave */
+            border-radius:14px;
+            padding:10px;
+            text-align:center;
+            cursor:pointer;
+            box-shadow:0 8px 18px rgba(0,0,0,0.35);
+            transition:transform 0.2s;
+        }
+
+        .card img{
+            width:80%;
+            height:150px;          /* más altura */
+            object-fit:cover;      /* recorte elegante */
+            border-radius:14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover img{
+            transform: scale(1.05);
+        }
+        
+
+        .card h3{
+            font-size:14px;
+            margin:8px 0 0;
+            color:#3b2414; /* café oscuro */
+        }
+
+       
+        .pedido-fijo{
+            position:fixed;
+            bottom:0;
+            left:0;
+            width:100%;
+            background:#ba8858;
+            padding:12px;
+            text-align:center;
+        }
+
+        .pedido-fijo button{
+            width:90%;
+            padding:14px;
+            font-size:16px;
+            background:#895523;
+            color:white;
+            border:none;
+            border-radius:14px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <h1>☕ Cafetería UATV</h1>
+        <p>Seleccione una categoría</p>
+    </header>
+
+    <!-- ===== CATEGORÍAS ===== -->
+    <div class="grid">
+
+        <div class="card" onclick="location.href='desayunos.html'">
+            <img src="./cafe_pan.webp" alt="Desayunos">
+            <h3>Desayunos</h3>
+        </div>
+
+        <div class="card" onclick="location.href='bebidas.html'">
+            <img src="./bebidas.jpg" alt="Bebidas">
+            <h3>Bebidas</h3>
+        </div>
+
+        <div class="card" onclick="location.href='./comida.html'">
+            <img src="./comida.jpeg" alt="comida">
+            <h3>Comida</h3>
+        </div>
+
+        <div class="card" onclick="location.href='postres.html'">
+            <img src="./postre.jpg" alt="Postres">
+            <h3>Postres</h3>
+        </div>
+
+        <div class="card" onclick="location.href='golosinas.html'">
+            <img src="./golosinas.jpg" alt="Golosinas">
+            <h3>Golosinas</h3>
+        </div>
+
+        <div class="card" onclick="location.href='frutas.html'">
+            <img src="./fruit.webp" alt="Frutas">
+            <h3>Frutas</h3>
+        </div>
+
+    </div>
+
+    <!-- ===== BOTÓN PEDIDO ===== -->
+    <div class="pedido-fijo">
+        <button onclick="location.href='./pedid.html'">
+            🧾 Ver Pedido
+        </button>
+    </div>
+
+
+    <script>
+        function agregar(nombre, precio){
+            let pedido = JSON.parse(localStorage.getItem("pedido")) || [];
+            pedido.push({nombre, precio});
+            localStorage.setItem("pedido", JSON.stringify(pedido));
+            alert("Producto agregado");
+        }
+        </script>
+        
+
+</body>
+</html>
+
+

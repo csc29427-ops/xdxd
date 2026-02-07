@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pedido</title>
+<link rel="stylesheet" href="./cafe.css">
+
+<style>
+.pedido-container{
+    max-width:420px;
+    margin:20px auto;
+    background:#b87333;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.3);
+}
+
+.pedido-container h2{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.info-pedido{
+    text-align:center;
+    font-size:13px;
+    margin-bottom:15px;
+    color:#fff3dc;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+    background:#c47c35;
+    padding:8px 12px;
+    border-radius:10px;
+}
+
+.item span{
+    font-size:14px;
+}
+
+.item button{
+    background:#5a2e0f;
+    padding:4px 8px;
+    font-size:12px;
+}
+
+.total{
+    text-align:right;
+    font-weight:bold;
+    margin-top:15px;
+    font-size:18px;
+}
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+.actions button{
+    width:48%;
+}
+
+.cancelar{
+    display:block;
+    margin:15px auto 0;
+    width:80%;
+    background:#8b0000;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#fff3dc;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🧾 Pedido</h1>
+</header>
+
+<div class="pedido-container" id="pedido">
+    <h2>Detalle del pedido</h2>
+
+    <div class="info-pedido" id="infoPedido"></div>
+
+    <div id="lista"></div>
+
+    <div class="total" id="total">Total: $0</div>
+
+    <div class="actions">
+        <button onclick="window.print()">🖨️ Imprimir</button>
+        <button onclick="vaciarPedido()">🗑️ Vaciar</button>
+    </div>
+
+    <button class="cancelar" onclick="cancelarPedido()">Cancelar pedido</button>
+
+    <a class="back" href="./index.html">← Seguir comprando</a>
+</div>
+
+<script>
+let pedido = JSON.parse(localStorage.getItem("pedido")) || [];
+
+// Número de pedido consecutivo
+if(!localStorage.getItem("numeroPedido")){
+    let contador = localStorage.getItem("contadorPedidos");
+
+    if(!contador){
+        contador = 1;
+    }else{
+        contador = parseInt(contador) + 1;
+    }
+
+    localStorage.setItem("contadorPedidos", contador);
+    localStorage.setItem("numeroPedido", contador);
+}
+
+
+// Hora del pedido
+if(!localStorage.getItem("horaPedido")){
+    localStorage.setItem("horaPedido", Date.now());
+}
+
+function mostrarInfoPedido(){
+    const fecha = new Date();
+    const numero = localStorage.getItem("numeroPedido");
+
+    document.getElementById("infoPedido").innerHTML = `
+        <strong>Pedido #${numero}</strong><br>
+        📅 ${fecha.toLocaleDateString()} ⏰ ${fecha.toLocaleTimeString()}
+    `;
+}
+
+function mostrarPedido(){
+    const lista = document.getElementById("lista");
+    const totalTxt = document.getElementById("total");
+    lista.innerHTML = "";
+    let total = 0;
+
+    pedido.forEach((item, index)=>{
+        total += item.precio;
+
+        lista.innerHTML += `
+            <div class="item">
+                <span>${item.nombre}</span>
+                <span>$${item.precio}</span>
+                <button onclick="eliminar(${index})">✖</button>
+            </div>
+        `;
+    });
+
+    totalTxt.innerText = "Total: $" + total;
+}
+
+function eliminar(index){
+    pedido.splice(index,1);
+    localStorage.setItem("pedido", JSON.stringify(pedido));
+    mostrarPedido();
+}
+
+function vaciarPedido(){
+    localStorage.removeItem("pedido");
+    localStorage.removeItem("horaPedido");
+    localStorage.removeItem("numeroPedido");
+    pedido = [];
+    mostrarPedido();
+}
+
+function cancelarPedido(){
+    const horaPedido = localStorage.getItem("horaPedido");
+    const ahora = Date.now();
+    const minutos = (ahora - horaPedido) / 60000;
+
+    if(minutos > 10){
+        alert("⏱️ El pedido solo se puede cancelar dentro de los primeros 10 minutos.");
+        return;
+    }
+
+    if(confirm("⚠️ ¿Deseas cancelar el pedido?\nSolo es posible antes de 10 minutos.")){
+        vaciarPedido();
+        alert("Pedido cancelado correctamente.");
+    }
+}
+
+mostrarInfoPedido();
+mostrarPedido();
+</script>
+
+</body>
+</html>
+
+

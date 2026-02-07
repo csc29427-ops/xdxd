@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Comida</title>
+<link rel="stylesheet" href="./cafe.css">
+</head>
+<body>
+
+<header>
+    <h1>🍽️ Comida</h1>
+    <a class="back" href="./principal.html">← Volver</a>
+</header>
+
+<div class="grid">
+
+<div class="card">
+    <img src="./tpastor.jpg">
+    <h3>Tacos al pastor</h3>
+    <p>$50</p>
+    <button onclick="agregar('Tacos al pastor', 50)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./enchiladas.jpg">
+    <h3>Enchiladas</h3>
+    <p>$35</p>
+    <button onclick="agregar('Enchiladas', 35)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./spechuga.png">
+    <h3>Spaguetti con pechuga</h3>
+    <p>$45</p>
+    <button onclick="agregar('Spaguetti con pechuga', 45)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./chspa.jpg">
+    <h3>Chuleta con pechuga</h3>
+    <p>$50</p>
+    <button onclick="agregar('Chuleta con pechuga', 50)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./enfrijoladas.webp">
+    <h3>Enfrijoladas</h3>
+    <p>$35</p>
+    <button onclick="agregar('Enfrijoladas', 35)">Agregar</button>
+</div>
+</div>
+
+<div class="pedido-fijo">
+    <button onclick="location.href='./pedid.html'">
+        🧾 Ver Pedido
+    </button>
+</div>
+
+<script>
+    function agregar(nombre, precio){
+        let pedido = JSON.parse(localStorage.getItem("pedido")) || [];
+        pedido.push({nombre, precio});
+        localStorage.setItem("pedido", JSON.stringify(pedido));
+        alert("Producto agregado");
+    }
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bebidas</title>
+<link rel="stylesheet" href="./cafe.css">
+</head>
+<body>
+
+<header>
+    <h1>🥤 Bebidas</h1>
+    <a class="back" href="./index.html">← Volver</a>
+</header>
+
+<div class="grid">
+
+<div class="card">
+    <img src="./tcafe.jpeg">
+    <h3>Café</h3>
+    <p>$20</p>
+    <button onclick="agregar('café', 20)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./refresco.jpg">
+    <h3>Refresco</h3>
+    <p>$18</p>
+    <button onclick="agregar('Refresco', 18)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./agua fresca.jpg">
+    <h3>Agua fresca</h3>
+    <p>$15</p>
+    <button onclick="agregar('Agua fresca', 15)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./lclara.webp">
+    <h3>Leche Santa Clara</h3>
+    <p>$18</p>
+    <button onclick="agregar('Leche Santa Clara', 18)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./boing.webp">
+    <h3>Boing</h3>
+    <p>$18</p>
+    <button onclick="agregar('Boing', 18)">Agregar</button>
+</div>
+
+<div class="card">
+    <img src="./skarchnatural.png">
+    <h3>Agua Skarch</h3>
+    <p>$18</p>
+    <button onclick="agregar('Agua Skarch', 10)">Agregar</button>
+</div>
+</div>
+
+<div class="pedido-fijo">
+    <button onclick="location.href='./pedid.html'">
+        🧾 Ver Pedido
+    </button>
+</div>
+
+<script>
+    function agregar(nombre, precio){
+        let pedido = JSON.parse(localStorage.getItem("pedido")) || [];
+        pedido.push({nombre, precio});
+        localStorage.setItem("pedido", JSON.stringify(pedido));
+        alert("Producto agregado");
+    }
+    </script>
+    
+</body>
+</html>
